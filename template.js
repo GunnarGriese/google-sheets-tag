@@ -53,7 +53,7 @@ if (data.dataTable) {
         authorization: auth
     };
 
-    // Make the request to Pub/Sub & return the status code as the response.
+    // Make the request to Google Sheets & return the status code as the response.
     return sendHttpRequest(url, requestOptions, postBody)
         .then(success_result => {
             log("Status Code of the response: " + success_result.statusCode);
