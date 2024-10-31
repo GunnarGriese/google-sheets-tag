@@ -95,12 +95,12 @@ const log = require("logToConsole");
 function transformObject(arr) {
     const result = [];
     for (let i = 0; i < arr.length; i++) {
-        result.push([arr[i].column1, arr[i].column2]);
+        result.push([arr[i].key, arr[i].value]);
     }
     return result;
 }
 
-// Hardcoded values for testing //
+// Hardcoded values for testing
 const spreadsheetId = data.sheet_id;  // Your sheet ID
 const sheetName = data.sheet_name;  // Your sheet name
 const sheetRange = data.sheet_range;  // Sheet name and range
@@ -143,11 +143,11 @@ if (data.dataTable) {
 
     // Make the request to Google Sheets & return the status code as the response.
     return sendHttpRequest(url, requestOptions, postBody)
-        .then(success_result => {
-            log("Status Code of the response: " + success_result.statusCode);
-            if (success_result.statusCode >= 200 &&
-                success_result.statusCode < 300) {
-                log(JSON.stringify(success_result));
+        .then(successResult => {
+            log("Status Code of the response: " + successResult.statusCode);
+            if (successResult.statusCode >= 200 &&
+                successResult.statusCode < 300) {
+                log(JSON.stringify(successResult));
                 data.gtmOnSuccess();
             }
             else {
@@ -159,9 +159,8 @@ if (data.dataTable) {
             data.gtmOnFailure();
         });
 }
-log("Error: No data provided!");
-data.gtmOnFailure();
 
+data.gtmOnFailure();
 
 ___SERVER_PERMISSIONS___
 
