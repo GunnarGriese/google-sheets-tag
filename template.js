@@ -4,10 +4,10 @@ const JSON = require("JSON");
 const log = require("logToConsole");
 
 // Helper function
-function transformObject(arr) {
+function transformObjectDynamic(arr, keyProp, valueProp) {
     const result = [];
     for (let i = 0; i < arr.length; i++) {
-        result.push([arr[i].key, arr[i].value]);
+        result.push([arr[i][keyProp], arr[i][valueProp]]);
     }
     return result;
 }
@@ -34,7 +34,7 @@ const auth = getGoogleAuth({
 if (data.dataTable) {
     log("Data Table: " + JSON.stringify(data.dataTable));
 
-    const valuesToInsert = transformObject(data.dataTable);
+    const valuesToInsert = transformObjectDynamic(data.dataTable, "column1", "column2");
 
     log("Values to insert: " + JSON.stringify(valuesToInsert));
 
